@@ -10,12 +10,6 @@
 
 ---
 
-## 🌐 Live Demo
-
-[View the website →](https://your-username.github.io/page-and-pen)
-
----
-
 ## ✨ Features
 
 - 📄 Clean, readable blog post layout
@@ -46,7 +40,7 @@ git clone https://github.com/Janani-bn/Page-and-Pen.git
 cd Page-and-Pen
 
 # Open in browser
-open index.js
+nodemon index.js
 ```
 ---
 
