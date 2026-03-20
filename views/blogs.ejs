@@ -1,0 +1,27 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <h1 class="page-title mb-5">Your Blogs</h1>
+
+    <% if (locals.posts && locals.posts.length > 0) { %>
+        <div class="row row-cols-1 g-4">
+            <% locals.posts.forEach(post => { %>
+                <div class="col">
+                    <div class="glass-card auth-card w-100" style="text-align: left;">
+                        <h3 class="mb-3"><%= post.title %></h3>
+                        <p class="text-muted"><%= new Date(post.created_at).toLocaleDateString() %></p>
+                        <p class="mb-4" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"><%= post.content %></p>
+                        <a href="/post/<%= post.id %>" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <div class="glass-card text-center">
+            <h4>You haven't written any blogs yet!</h4>
+            <a href="/submit" class="btn btn-primary mt-4">Start Writing</a>
+        </div>
+    <% } %>
+</main>
+
+<%- include("./partials/footer.ejs") %>

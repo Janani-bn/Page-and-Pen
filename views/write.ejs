@@ -1,0 +1,23 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <div class="glass-card mb-5">
+        <h1 class="page-title" style="text-align: left;"><%= locals.post.title %></h1>
+        <div class="mt-4 mb-5" style="white-space: pre-wrap; font-size: 1.15rem; color: var(--text-primary); line-height: 1.9;">
+            <%= locals.post.content %>
+        </div>
+
+        <% if (locals.isAuthor || locals.isAdmin) { %>
+        <div class="d-flex justify-content-end gap-3 mt-4 pt-4" style="border-top: 1px solid var(--border-color)">
+            <% if (locals.isAuthor) { %>
+                <a href="/edit/<%= locals.post.id %>" class="btn btn-primary">Edit</a>
+            <% } %>
+            <form action="/delete/<%= locals.post.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>

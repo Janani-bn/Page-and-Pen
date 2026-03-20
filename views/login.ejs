@@ -1,0 +1,17 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container d-flex align-items-center justify-content-center">
+    <div class="glass-card auth-card w-100">
+        <form action="/login" method="POST">
+            <h5>Welcome Back!</h5>
+            <input type="text" placeholder="Username" class="form-input" name="name" required>
+            <input type="password" placeholder="Password" class="form-input" name="password" required>
+            
+            <button type="submit" class="btn btn-primary w-100 mt-3">Log In</button>
+            
+            <a href="/signup" class="btn-link d-block mt-4">Don't have an account? Sign up</a>
+        </form>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>

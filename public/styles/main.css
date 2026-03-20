@@ -1,0 +1,282 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #151614;
+  --bg-gradient: linear-gradient(135deg, #151614 0%, #1e201c 100%);
+  --surface-color: rgba(40, 44, 37, 0.65);
+  --border-color: rgba(164, 194, 120, 0.12);
+  --text-primary: #f5f5f0;
+  --text-secondary: #9ba392;
+  --accent-color: #a4c278;
+  --accent-gradient: linear-gradient(135deg, #a4c278, #86a659);
+  --danger-color: #e57373;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Glassmorphism Header */
+.custom-header {
+  background: rgba(21, 22, 20, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+.brand-title {
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 1.1rem !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.2rem;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary) !important;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--surface-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  padding: 2.5rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.page-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  flex: 1;
+  width: 100%;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1.page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--accent-gradient) !important;
+  color: #1e201c !important; /* Making button text dark for better contrast against green */
+  border: none !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(164, 194, 120, 0.3);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(164, 194, 120, 0.4);
+}
+
+.btn-danger {
+  background: var(--danger-color) !important;
+  color: #1e201c !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: #ff8a80 !important;
+  transform: translateY(-2px);
+}
+
+.btn-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.btn-link:hover {
+  color: #cbe896;
+  text-decoration: underline;
+}
+
+
+/* Centered Form Cards (Login/Signup) */
+.auth-card {
+  max-width: 440px;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.auth-card h5 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Inputs */
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.2rem;
+  background: rgba(21, 22, 20, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(164, 194, 120, 0.2);
+  background: rgba(21, 22, 20, 0.8);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 200px;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 6rem 1.5rem;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* take up remaining space */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(164, 194, 120, 0.15) 0%, rgba(21, 22, 20, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  background: linear-gradient(to right, #f5f5f0, #9ba392);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+}
+
+.hero-cta {
+  font-size: 1.25rem;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+}
+
+/* Footer */
+.custom-footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  background: rgba(21, 22, 20, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 3rem; }
+  h1.page-title { font-size: 2.2rem; }
+  .glass-card { padding: 1.5rem; }
+}

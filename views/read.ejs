@@ -1,0 +1,48 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <div class="text-center mb-5">
+        <h1 class="page-title mb-3">Explore the Community</h1>
+        <p class="hero-subtitle mb-0" style="font-size: 1.2rem;">Read what others are sharing!</p>
+        
+        <% if (locals.name) { %>
+            <div class="mt-4 pt-3">
+                <a href="/blogs" class="btn btn-primary px-4 py-2 me-3">View My Personal Blogs</a>
+                <a href="/submit" class="btn btn-outline-light px-4 py-2" style="border: 1px solid var(--border-color); color: var(--text-primary);">Write a New Blog</a>
+            </div>
+        <% } else { %>
+            <div class="mt-4 pt-3">
+                <a href="/signup" class="btn btn-primary px-4 py-2">Sign up to Start Writing</a>
+            </div>
+        <% } %>
+    </div>
+
+    <% if (locals.posts && locals.posts.length > 0) { %>
+        <div class="row row-cols-1 g-4">
+            <% locals.posts.forEach(post => { %>
+                <div class="col">
+                    <div class="glass-card w-100 pb-4" style="text-align: left;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="mb-0" style="color: var(--accent-color); font-weight: 700;"><%= post.title %></h3>
+                            <span class="badge" style="background: rgba(164, 194, 120, 0.15); color: var(--accent-color); font-size: 0.95rem; padding: 0.6rem 1rem; border-radius: 30px; font-weight: 500;">
+                                By @<%= post.author_username %>
+                            </span>
+                        </div>
+                        <p class="text-muted mb-3" style="font-size: 0.95rem;"><%= new Date(post.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                        <p class="mb-4" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.8;"><%= post.content %></p>
+                        <div class="text-end">
+                            <a href="/post/<%= post.id %>" class="btn btn-primary btn-sm px-4 py-2" style="border-radius: 20px;">Read Full Story →</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <div class="glass-card text-center mt-5">
+            <h4 class="mb-4">No one has written any blogs yet. Be the first!</h4>
+            <a href="/submit" class="btn btn-primary">Start Writing</a>
+        </div>
+    <% } %>
+</main>
+
+<%- include("./partials/footer.ejs") %>

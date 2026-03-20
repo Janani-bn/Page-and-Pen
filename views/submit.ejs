@@ -1,0 +1,19 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <h1 class="page-title">Hi <%= locals.name %>! Welcome to Page and Pen.</h1>
+
+    <div class="glass-card">
+        <form action="/write" method="POST">
+            <label class="d-block mb-3 fs-3 fw-semibold">Write a blog:</label>
+            <input type="text" name="title" class="form-input fs-5 mb-4" placeholder="Title" required>
+            <textarea name="content" class="form-input" placeholder="Share your thoughts..." required></textarea>
+            
+            <div class="text-end mt-4">
+                <button type="submit" class="btn btn-primary px-5 fs-5">Post</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>

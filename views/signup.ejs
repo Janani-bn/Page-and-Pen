@@ -1,0 +1,17 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container d-flex align-items-center justify-content-center">
+    <div class="glass-card auth-card w-100">
+        <form action="/signup" method="POST">
+            <h5>Join Page and Pen!</h5>
+            <input type="text" name="name" placeholder="Username" id="User-name" class="form-input" aria-required="true" pattern="[A-Za-z]+" required> 
+            <input type="email" name="email" placeholder="Enter your email" class="form-input" aria-required="true" required>
+            <input type="password" name="password" placeholder="Create a Password" class="form-input" pattern=".{8,}" title="Eight or more characters" required>
+            
+            <button type="submit" class="btn btn-primary w-100 mt-3">Sign-Up</button>
+            <a href="/login" class="btn-link d-block mt-4">Already have an account? Log in</a>
+        </form>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>

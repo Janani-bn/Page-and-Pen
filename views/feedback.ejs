@@ -1,0 +1,15 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container text-center">
+    <h1 class="page-title mb-5">Share Your Feedback</h1>
+    <div class="glass-card d-inline-block px-5 text-start w-100" style="max-width: 600px;">
+        <h4 class="mb-4">We value your thoughts, <%= locals.name %>!</h4>
+        <form action="/feedback" method="POST">
+            <label for="feedback" class="form-label fs-5 fw-semibold mb-2">Your Suggestion</label>
+            <textarea name="feedback" id="feedback" class="form-input mb-4" rows="6" placeholder="What can we improve? Have a feature request? Let us know!" required></textarea>
+            <button type="submit" class="btn btn-primary w-100 fs-5 py-2">Submit Feedback</button>
+        </form>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>
