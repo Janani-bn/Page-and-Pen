@@ -65,7 +65,7 @@ nodemon index.js
 
 ## 👤 Author
 
-**Your Name**
+** Janani **
 - GitHub: [@Janani-bn](https://github.com/Janani-bn)
 - Email: bnajanani258@gmail.com
 
