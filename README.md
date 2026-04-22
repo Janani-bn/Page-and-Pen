@@ -68,5 +68,5 @@ nodemon index.js
 **Janani**
 - GitHub: [@Janani-bn](https://github.com/Janani-bn)
 - Email: bnajanani258@gmail.com
-
+- LinkedIn: [@janani-b-n](https://www.linkedin.com/in/janani-b-n-72761537a/)
 ---
