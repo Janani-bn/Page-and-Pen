@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
-import session from "express-session";
+import session from "express-session";//remembers users activity across requests
 import "dotenv/config";
 
 const app = express();
@@ -75,7 +75,6 @@ app.post("/signup", async (req,res) =>{
         }
         
         const hashedPassword = await bcrypt.hash(password, 10);
-        // Insert into users table as requested with hashed_password
         const queryUsers = "INSERT INTO users (username, hashed_password) VALUES ($1, $2)";
         await db.query(queryUsers, [name, hashedPassword]);
         
@@ -96,9 +95,6 @@ app.post("/login", async (req,res) =>{
             return res.status(400).send("Username does not exist. Please check if you have signed up.");
         }
         const user = result.rows[0];
-        // Note: comparing against mapped column.
-        // Assuming the column is hashed_password or "hashed passwords"
-        // I will use `Object.values(user)[2]` safely if the name has spaces.
         const dbPassword = user.hashed_password || user['hashed passwords'] || user.password;
         
         const isMatch = await bcrypt.compare(password, dbPassword);
@@ -249,8 +245,6 @@ app.post("/feedback", async (req, res) => {
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
-        
-        // Ensure the old column is renamed if the system already created it as 'username'
         try {
             await db.query("ALTER TABLE platform_feedback RENAME COLUMN username TO user_name;");
         } catch (e) {
@@ -275,6 +269,6 @@ app.get("/index.ejs",(req,res)=>{
     res.render("index.ejs");
 });
 
-app.listen(port,() =>{
+app.listen(port,()=>{
     console.log(`Listening on port ${port}`);
 });
