@@ -1,0 +1,21 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <div class="glass-card text-center">
+        <h1 class="page-title mb-3">Dashboard</h1>
+        <p class="hero-subtitle mb-4">Welcome back, <strong><%= locals.auth.username %></strong>.</p>
+
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="/submit" class="btn btn-primary px-4">Create Blog</a>
+            <a href="/blogs" class="btn btn-outline-light px-4" style="border: 1px solid var(--border-color); color: var(--text-primary);">My Blogs</a>
+            <a href="/read" class="btn btn-outline-light px-4" style="border: 1px solid var(--border-color); color: var(--text-primary);">Read Blogs</a>
+            <a href="/profile" class="btn btn-outline-light px-4" style="border: 1px solid var(--border-color); color: var(--text-primary);">Profile</a>
+            <a href="/feedback" class="btn btn-outline-light px-4" style="border: 1px solid var(--border-color); color: var(--text-primary);">Feedback</a>
+            <% if (locals.auth.role === "admin") { %>
+                <a href="/admin/dashboard" class="btn btn-outline-light px-4" style="border: 1px solid var(--border-color); color: var(--text-primary);">Admin Dashboard</a>
+            <% } %>
+        </div>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>

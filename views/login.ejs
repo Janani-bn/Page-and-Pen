@@ -4,7 +4,21 @@
     <div class="glass-card auth-card w-100">
         <form action="/login" method="POST">
             <h5>Welcome Back!</h5>
+            <div class="mt-2 mb-2" style="text-align:left;">
+                <label class="form-label mb-2" style="opacity:.9;">Sign up/Login as</label>
+                <div class="d-flex gap-3">
+                    <label class="d-flex align-items-center gap-2">
+                        <input type="radio" name="role" value="user" checked>
+                        <span>User</span>
+                    </label>
+                    <label class="d-flex align-items-center gap-2">
+                        <input type="radio" name="role" value="admin">
+                        <span>Admin</span>
+                    </label>
+                </div>
+            </div>
             <input type="text" placeholder="Username" class="form-input" name="name" required>
+            <input type="email" placeholder="Email (required for Admin)" class="form-input" name="email">
             <input type="password" placeholder="Password" class="form-input" name="password" required>
             
             <button type="submit" class="btn btn-primary w-100 mt-3">Log In</button>

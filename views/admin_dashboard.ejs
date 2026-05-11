@@ -1,0 +1,40 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="page-container">
+    <div class="text-center mb-5">
+        <h1 class="page-title mb-2">Admin Dashboard</h1>
+        <p class="hero-subtitle mb-0">Manage all blogs</p>
+    </div>
+
+    <% if (locals.posts && locals.posts.length > 0) { %>
+        <div class="row row-cols-1 g-4">
+            <% locals.posts.forEach(post => { %>
+                <div class="col">
+                    <div class="glass-card w-100 pb-4" style="text-align: left;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="mb-0" style="color: var(--accent-color); font-weight: 700;"><%= post.title %></h3>
+                            <span class="badge" style="background: rgba(164, 194, 120, 0.15); color: var(--accent-color); font-size: 0.95rem; padding: 0.6rem 1rem; border-radius: 30px; font-weight: 500;">
+                                By @<%= post.author_username %>
+                            </span>
+                        </div>
+                        <p class="text-muted mb-3" style="font-size: 0.95rem;"><%= new Date(post.created_at).toLocaleDateString() %></p>
+                        <p class="mb-4" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.8;"><%= post.content %></p>
+                        <div class="d-flex justify-content-end gap-3">
+                            <a href="/post/<%= post.id %>" class="btn btn-outline-light btn-sm px-4 py-2" style="border-radius: 20px; border: 1px solid var(--border-color); color: var(--text-primary);">View</a>
+                            <a href="/edit/<%= post.id %>" class="btn btn-primary btn-sm px-4 py-2" style="border-radius: 20px;">Edit</a>
+                            <form action="/delete/<%= post.id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm px-4 py-2" style="border-radius: 20px;">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <div class="glass-card text-center mt-5">
+            <h4 class="mb-0">No blogs found.</h4>
+        </div>
+    <% } %>
+</main>
+
+<%- include("./partials/footer.ejs") %>

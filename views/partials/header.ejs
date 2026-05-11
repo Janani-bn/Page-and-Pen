@@ -23,8 +23,16 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <a href="/signup" class="btn btn-outline-light me-2">Sign-up</a>
-                <a href="/login" class="btn btn-primary">Log-in</a>
+                <% if (locals.auth) { %>
+                    <a href="/profile" class="btn btn-outline-light me-2"><%= locals.auth.username %> (<%= locals.auth.role %>)</a>
+                    <% if (locals.auth.role === "admin") { %>
+                        <a href="/admin/dashboard" class="btn btn-outline-light me-2">Admin</a>
+                    <% } %>
+                    <a href="/logout" class="btn btn-primary">Logout</a>
+                <% } else { %>
+                    <a href="/signup" class="btn btn-outline-light me-2">Sign-up</a>
+                    <a href="/login" class="btn btn-primary">Log-in</a>
+                <% } %>
             </div>
         </div>
     </header>

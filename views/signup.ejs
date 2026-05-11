@@ -4,6 +4,19 @@
     <div class="glass-card auth-card w-100">
         <form action="/signup" method="POST">
             <h5>Join Page and Pen!</h5>
+            <div class="mt-2 mb-2" style="text-align:left;">
+                <label class="form-label mb-2" style="opacity:.9;">Sign up/Login as</label>
+                <div class="d-flex gap-3">
+                    <label class="d-flex align-items-center gap-2">
+                        <input type="radio" name="role" value="user" checked>
+                        <span>User</span>
+                    </label>
+                    <label class="d-flex align-items-center gap-2">
+                        <input type="radio" name="role" value="admin">
+                        <span>Admin</span>
+                    </label>
+                </div>
+            </div>
             <input type="text" name="name" placeholder="Username" id="User-name" class="form-input" aria-required="true" pattern="[A-Za-z]+" required> 
             <input type="email" name="email" placeholder="Enter your email" class="form-input" aria-required="true" required>
             <input type="password" name="password" placeholder="Create a Password" class="form-input" pattern=".{8,}" title="Eight or more characters" required>
