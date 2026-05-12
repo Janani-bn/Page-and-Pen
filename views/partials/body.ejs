@@ -3,8 +3,12 @@
     <h1 class="hero-title">Where ideas take shape...</h1>
     <p class="hero-subtitle">Track your impact, post by post. </p>
     
-    <div class="d-flex gap-3 justify-content-center align-items-center">
-        <a href="/signup" class="btn btn-primary hero-cta">Get Started</a>
-        <a href="/login" class="btn-link">Already have an account? Login</a>
+    <div class="d-flex gap-3 justify-content-center align-items-center flex-wrap">
+        <% if (locals.auth) { %>
+            <a href="/read" class="btn btn-primary hero-cta">Browse Posts</a>
+        <% } else { %>
+            <a href="/signup" class="btn btn-primary hero-cta">Get Started</a>
+            <a href="/login" class="btn-link">Already have an account? Login</a>
+        <% } %>
     </div>
 </main>
