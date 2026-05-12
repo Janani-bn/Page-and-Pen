@@ -2,7 +2,7 @@
 
 <main class="page-container d-flex align-items-center justify-content-center">
     <div class="glass-card auth-card w-100">
-        <form action="/signup" method="POST">
+        <form id="signup-form" action="/signup" method="POST" novalidate>
             <h5>Join Page and Pen!</h5>
             <div class="mt-2 mb-2" style="text-align:left;">
                 <label class="form-label mb-2" style="opacity:.9;">Sign up/Login as</label>
@@ -17,14 +17,133 @@
                     </label>
                 </div>
             </div>
-            <input type="text" name="name" placeholder="Username" id="User-name" class="form-input" aria-required="true" pattern="[A-Za-z]+" required> 
-            <input type="email" name="email" placeholder="Enter your email" class="form-input" aria-required="true" required>
-            <input type="password" name="password" placeholder="Create a Password" class="form-input" pattern=".{8,}" title="Eight or more characters" required>
+            <div class="field-group">
+                <input type="text" name="name" placeholder="Username" id="signup-username" class="form-input" autocomplete="username" aria-required="true" pattern="[A-Za-z]+" required aria-describedby="signup-username-error" aria-invalid="false">
+                <p id="signup-username-error" class="form-feedback" role="alert" hidden></p>
+            </div>
+            <div class="field-group">
+                <input type="email" name="email" placeholder="Enter your email" id="signup-email" class="form-input" autocomplete="email" aria-required="true" required aria-describedby="signup-email-error" aria-invalid="false">
+                <p id="signup-email-error" class="form-feedback" role="alert" hidden></p>
+            </div>
+            <div class="field-group">
+                <input type="password" name="password" placeholder="Create a Password" id="signup-password" class="form-input" autocomplete="new-password" pattern=".{8,}" title="Eight or more characters" required aria-describedby="signup-password-error" aria-invalid="false">
+                <p id="signup-password-error" class="form-feedback" role="alert" hidden></p>
+            </div>
             
             <button type="submit" class="btn btn-primary w-100 mt-3">Sign-Up</button>
             <a href="/login" class="btn-link d-block mt-4">Already have an account? Log in</a>
         </form>
     </div>
 </main>
+
+<script>
+(function () {
+    var form = document.getElementById("signup-form");
+    var usernameInput = document.getElementById("signup-username");
+    var passwordInput = document.getElementById("signup-password");
+    var emailInput = document.getElementById("signup-email");
+    var usernameError = document.getElementById("signup-username-error");
+    var passwordError = document.getElementById("signup-password-error");
+    var emailError = document.getElementById("signup-email-error");
+
+    var USERNAME_MSG = "Username must contain only letters with no numbers, spaces, or special characters.";
+    var PASSWORD_MSG = "Password must contain at least 8 characters.";
+    var EMAIL_MSG = "Please enter a valid email address.";
+
+    function isUsernameValid(value) {
+        var v = String(value || "").trim();
+        return v.length > 0 && /^[A-Za-z]+$/.test(v);
+    }
+
+    function isPasswordValid(value) {
+        return String(value || "").length >= 8;
+    }
+
+    function isEmailValid(value) {
+        var t = String(value || "").trim();
+        return t.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+    }
+
+    function showFieldError(input, errorEl, message) {
+        input.classList.add("is-invalid");
+        input.setAttribute("aria-invalid", "true");
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+    }
+
+    function clearFieldError(input, errorEl) {
+        input.classList.remove("is-invalid");
+        input.setAttribute("aria-invalid", "false");
+        errorEl.textContent = "";
+        errorEl.hidden = true;
+    }
+
+    function updateUsernameLive() {
+        var v = usernameInput.value.trim();
+        if (v.length === 0) {
+            clearFieldError(usernameInput, usernameError);
+            return;
+        }
+        if (isUsernameValid(usernameInput.value)) {
+            clearFieldError(usernameInput, usernameError);
+        } else {
+            showFieldError(usernameInput, usernameError, USERNAME_MSG);
+        }
+    }
+
+    function updatePasswordLive() {
+        var v = passwordInput.value;
+        if (v.length === 0) {
+            clearFieldError(passwordInput, passwordError);
+            return;
+        }
+        if (isPasswordValid(v)) {
+            clearFieldError(passwordInput, passwordError);
+        } else {
+            showFieldError(passwordInput, passwordError, PASSWORD_MSG);
+        }
+    }
+
+    usernameInput.addEventListener("input", updateUsernameLive);
+    passwordInput.addEventListener("input", updatePasswordLive);
+    emailInput.addEventListener("input", function () {
+        if (isEmailValid(emailInput.value)) {
+            clearFieldError(emailInput, emailError);
+        }
+    });
+
+    form.addEventListener("submit", function (e) {
+        var u = usernameInput.value.trim();
+        var p = passwordInput.value;
+        var em = emailInput.value;
+        var ok = true;
+
+        if (!isUsernameValid(u)) {
+            ok = false;
+            showFieldError(usernameInput, usernameError, USERNAME_MSG);
+        } else {
+            clearFieldError(usernameInput, usernameError);
+        }
+
+        if (!isPasswordValid(p)) {
+            ok = false;
+            showFieldError(passwordInput, passwordError, PASSWORD_MSG);
+        } else {
+            clearFieldError(passwordInput, passwordError);
+        }
+
+        if (!isEmailValid(em)) {
+            ok = false;
+            showFieldError(emailInput, emailError, EMAIL_MSG);
+        } else {
+            clearFieldError(emailInput, emailError);
+        }
+
+        if (!ok) {
+            e.preventDefault();
+        }
+    });
+})();
+</script>
 
 <%- include("./partials/footer.ejs") %>

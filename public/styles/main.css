@@ -203,6 +203,34 @@ p {
   background: rgba(21, 22, 20, 0.8);
 }
 
+.field-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.field-group .form-input {
+  margin-bottom: 0.35rem;
+}
+
+.field-group .form-feedback {
+  font-size: 0.875rem;
+  color: var(--danger-color);
+  margin: 0;
+  min-height: 1.25em;
+  line-height: 1.35;
+}
+
+.form-input.is-invalid {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 2px rgba(229, 115, 115, 0.2);
+}
+
+.form-input.is-invalid:focus {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 2px rgba(229, 115, 115, 0.28);
+  background: rgba(21, 22, 20, 0.8);
+}
+
 textarea.form-input {
   resize: vertical;
   min-height: 200px;
