@@ -4,6 +4,8 @@ import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";//remembers users activity across requests
 import "dotenv/config";
+import pkg from 'pg';
+const { Pool } = pkg;
 
 const app = express();
 const port = process.env.PORT || 3000;
