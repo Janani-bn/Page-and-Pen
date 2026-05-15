@@ -107,6 +107,8 @@ function canModifyPost({ auth, post }) {
     return post.author_username === auth.username;
 }
 
+app.set("trust proxy", 1);
+
 app.use(
     session({
         secret: process.env.SESSION_SECRET || "fallback_secret",
@@ -114,8 +116,8 @@ app.use(
         saveUninitialized: false,
         cookie: {
             httpOnly: true,
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production",
+            sameSite: "none",
+            secure: process.env.NODE_ENV === true,
             maxAge: 1000 * 60 * 60 * 12, // 12 hours
         },
     })
